@@ -1,44 +1,52 @@
-let students = require("../models/studentModel");
-const moment = require("moment");
+const Student = require("../models/studentModel");
 
-// Define your controller methods
-exports.createStudent = (req, res) => {
-  const studentId = Math.floor(Math.random() * 10000); // Generate random ID
-  const student = {
-    id: studentId,
-    ...req.body,
-    createdDate: moment().format(),
-    updatedDate: moment().format(),
-  };
-  students[studentId] = student;
-  res.status(201).send(student);
+exports.createStudent = async (req, res) => {
+  try {
+    const student = new Student(req.body);
+    await student.save();
+    res.status(201).send(student);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
 
-exports.getStudent = (req, res) => {
-  const studentId = req.params.id;
-  if (!students[studentId]) return res.status(404).send("Student not found");
-  res.send(students[studentId]);
+exports.getAllStudents = async (req, res) => {
+  try {
+    const students = await Student.find();
+    res.send(students);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
 
-exports.updateStudent = (req, res) => {
-  const studentId = req.params.id;
-  if (!students[studentId]) return res.status(404).send("Student not found");
-  students[studentId] = {
-    id: studentId,
-    ...students[studentId],
-    ...req.body,
-    updatedDate: moment().format(),
-  };
-  res.send(students[studentId]);
+exports.getStudent = async (req, res) => {
+  try {
+    const student = await Student.findById(req.params.id);
+    if (!student) return res.status(404).send("Student not found");
+    res.send(student);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
 
-exports.deleteStudent = (req, res) => {
-  const studentId = req.params.id;
-  if (!students[studentId]) return res.status(404).send("Student not found");
-  delete students[studentId];
-  res.status(204).send();
+exports.updateStudent = async (req, res) => {
+  try {
+    const student = await Student.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!student) return res.status(404).send("Student not found");
+    res.send(student);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
 
-exports.getAllStudents = (req, res) => {
-  res.send(Object.values(students)); // send array of students
+exports.deleteStudent = async (req, res) => {
+  try {
+    const student = await Student.findByIdAndDelete(req.params.id);
+    if (!student) return res.status(404).send("Student not found");
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
