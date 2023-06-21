@@ -12,7 +12,7 @@ exports.createStudent = async (req, res) => {
 
 exports.getAllStudents = async (req, res) => {
   try {
-    const students = await Student.find();
+    const students = await Student.find({});
     res.send(students);
   } catch (err) {
     res.status(500).send(err);
