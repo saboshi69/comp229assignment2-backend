@@ -1,6 +1,6 @@
 ### SERVER SETTING
 
-1. Clone this repository `git clone https://github.com/your_username/your_repository_name.git` and Install all dependency `npm install`
+1. Clone this repository `git clone https://github.com/saboshi69/comp229assignment2-backend.git` and Install all dependency `npm install`
 2. Add .env file at the main root
 3. In the .env file, add `DB_CONNECT="mongodb+srv://<<YOUR MONGODB USER>>:<<YOUR MONGODB PASSWORD>>@<<YOUR CLUSTER PATH>>.mongodb.net/?retryWrites=true&w=majority"`
 4. You should find your step 3 information from MONGODB ATLAS PAGE, if not please contact me via school email
@@ -8,17 +8,17 @@
 
 ### API Endpoints
 
-- GET /students: Fetch all students
-- GET /students/:id: Fetch a single student by id
-- POST /students: Add a new student
-- PUT /students/:id: Update a student by id
-- DELETE /students/:id: Delete a student by id
+- GET /businesses: Fetch all business
+- GET /business/:id: Fetch a single student by id
+- POST /business: Add a new student
+- PUT /business/:id: Update a student by id
+- DELETE /business/:id: Delete a student by id
 
 ### TEST CASE
 
 #### Create a new student (POST request):
 
-URL: http://localhost:3000/students
+URL: http://localhost:3000/business
 Method: POST
 Body (raw JSON):
 
