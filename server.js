@@ -15,6 +15,14 @@ app.use(cors(config.corsOptions));
 // parse JSON request body
 app.use(bodyParser.json());
 
+app.use(
+  cookieSession({
+    name: "ass-session",
+    keys: ["COOKIE_SECRET"], // should use as secret environment variable
+    httpOnly: true,
+  })
+);
+
 // use business routes
 app.use("/business", businessRoutes);
 
