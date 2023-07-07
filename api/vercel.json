@@ -2,13 +2,13 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "app.js",
       "use": "@now/node"
     }
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
