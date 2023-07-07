@@ -10,7 +10,8 @@ const userRoutes = require("./routes/userRoutes");
 const app = express();
 
 // enable CORS - Cross Origin Resource Sharing
-app.use(cors(config.corsOptions));
+// app.use(cors(config.corsOptions));
+app.use(cors());
 
 // parse JSON request body
 app.use(bodyParser.json());
