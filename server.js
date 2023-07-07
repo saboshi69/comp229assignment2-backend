@@ -15,14 +15,6 @@ app.use(cors(config.corsOptions));
 // parse JSON request body
 app.use(bodyParser.json());
 
-app.use(
-  cookieSession({
-    name: "ass-session",
-    keys: ["COOKIE_SECRET"], // should use as secret environment variable
-    httpOnly: true,
-  })
-);
-
 // use business routes
 app.use("/business", businessRoutes);
 
@@ -34,3 +26,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT} OK`);
 });
+
+module.exports = app;
